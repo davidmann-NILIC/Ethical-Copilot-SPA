@@ -10,8 +10,8 @@
 
     <header class="master-header">
         <div class="header-left">
-            <img src="3 logo cluster.jpg" alt="University Logos" class="cluster-logo">
-            <div id="header-nav" style="display: none; align-items: center; gap: 10px;">
+            <img src="3 logo cluster.jpg" alt="Logos" class="cluster-logo">
+            <div id="header-nav" style="display: none;" class="header-nav-item">
                 <img src="Icon1.jpg" style="height: 30px;">
                 <span class="header-nav-text" style="color: var(--soton-navy); font-weight: 800;">1. Understand Assignment Brief</span>
             </div>
@@ -23,46 +23,96 @@
             <div class="pane-left"><img src="copilot-logo.png" style="max-width: 60%;" alt="Copilot"></div>
             <div class="pane-right">
                 <h1 class="hero-title"><span class="highlight-pink">ETHICAL</span> USE OF COPILOT</h1>
-                <p class="hero-subtitle">When is it <span class="highlight-pink">ethical</span> to use Copilot?</p>
-                <button class="pill-btn pink-bg" onclick="showView('view-q1a')">Start Activity</button>
+                <p class="hero-subtitle">In assignment writing, when is it <span class="highlight-pink">ethical</span> to use Copilot?</p>
+                <div class="instruction-frame">
+                    <h2 style="color: var(--soton-navy); font-size: 1.2rem; margin-bottom: 10px;">How it works</h2>
+                    <p style="color: var(--soton-navy); margin: 5px 0;">5 scenarios to check understanding.</p>
+                    <p style="color: var(--soton-navy); margin: 5px 0;">Includes video and audio elements.</p>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <button class="pill-btn outline-navy" onclick="playAudio('Audio1_Test.wav')">Test volume</button>
+                    <button class="pill-btn pink-bg" onclick="showView('view-n1')">Start</button>
+                </div>
             </div>
+        </main>
+    </div>
+
+    <div id="view-n1" class="view">
+        <main class="split-screen">
+            <div class="pane-left"><img src="copilot-logo.png" style="opacity: 0.1; max-width: 50%;"></div>
+            <div class="pane-right">
+                <h1 class="hero-title" style="margin-bottom: 30px;">ASSIGNMENT PROCESS</h1>
+                <div style="display: flex; align-items: center; gap: 20px; background: #f9f9f9; padding: 20px; border-radius: 15px;">
+                    <img src="Icon1.jpg" style="height: 50px;">
+                    <p style="flex-grow: 1; font-weight: bold; color: var(--soton-navy);">1. Understand Assignment Brief</p>
+                    <button class="pill-btn pink-bg" style="width: 100px;" onclick="showView('view-q1a')">Start</button>
+                </div>
+                </div>
         </main>
     </div>
 
     <div id="view-q1a" class="view">
         <main class="split-screen">
-            <div class="pane-left">
-                <span class="watermark-text-large" aria-hidden="true">01</span>
-            </div>
+            <div class="pane-left"><span class="watermark-text-large" aria-hidden="true">01</span></div>
             <div class="pane-right" style="text-align: center;">
                 <div class="video-container-balanced">
-                    <video id="q1a-video" playsinline preload="auto">
-                        <source src="Video1_Question.mp4" type="video/mp4">
-                    </video>
+                    <video id="q1a-video" playsinline><source src="Video1_Question.mp4" type="video/mp4"></video>
                 </div>
-                <div class="question-content">
-                    <p class="question-text"><strong>When using your university account,</strong> can you upload your brief for an explanation?</p>
-                    <div class="q-button-row-centered">
-                        <button id="btn-yes" class="pill-btn navy-bg" disabled onclick="triggerFeedback('correct')">YES</button>
-                        <button id="btn-no" class="pill-btn pink-bg" disabled onclick="triggerFeedback('incorrect')">NO</button>
+                <p class="question-text"><strong>When using your university account,</strong> can you upload your brief for an explanation?</p>
+                <div class="q-button-row-centered">
+                    <button id="btn-yes" class="pill-btn navy-bg" disabled onclick="triggerFeedback('correct')">YES</button>
+                    <button id="btn-no" class="pill-btn pink-bg" disabled onclick="triggerFeedback('incorrect')">NO</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="view-i1" class="view">
+        <main class="split-screen">
+            <div class="pane-left"><span class="watermark-text-large" aria-hidden="true">i</span></div>
+            <div class="pane-right">
+                <h1 class="hero-title">MORE INFORMATION</h1>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-frame"><img src="DM NTU Picture.png" class="staff-photo"></div>
+                        <h3 style="color: var(--soton-navy);">David Mann</h3>
+                        <p style="font-size: 0.8rem; color: var(--muted-grey);">Nottingham Trent University</p>
+                        <a href="mailto:david.mann@ntu.ac.uk" class="pill-btn pink-bg" style="width: 100%; margin-top: 10px;">Email Dave</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-frame"><img src="LAM UoS Picture.png" class="staff-photo"></div>
+                        <h3 style="color: var(--soton-navy);">Lori-Ann Milln</h3>
+                        <p style="font-size: 0.8rem; color: var(--muted-grey);">University of Southampton</p>
+                        <a href="mailto:lm3n11@soton.ac.uk" class="pill-btn navy-bg" style="width: 100%; margin-top: 10px;">Email Lori-Ann</a>
                     </div>
                 </div>
+                <button class="pill-btn outline-navy" style="margin-top: 30px;" onclick="showView('view-n1')">Return to Start</button>
             </div>
         </main>
     </div>
 
     <div id="feedback-drawer" class="drawer">
         <video id="feedback-video" width="100%" playsinline style="border-radius: 15px;"></video>
-        <h2 id="feedback-header" style="color: var(--soton-navy); margin-top: 20px;"></h2>
-        <p id="feedback-body" style="background: #f4f4f4; padding: 20px; border-radius: 10px;"></p>
-        <button class="pill-btn navy-bg" onclick="closeDrawer(); location.reload();">Return to Start</button>
+        <h2 id="feedback-header" style="color: var(--soton-navy); margin: 20px 0 10px 0;"></h2>
+        <div style="background: #f4f4f4; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+            <p id="feedback-body" style="color: var(--soton-navy); line-height: 1.6;"></p>
+        </div>
+        <div class="drawer-nav-grid">
+            <button id="btn-listen" class="pill-btn outline-navy" style="width: 100%;">Listen</button>
+            <button id="btn-more-info" class="pill-btn outline-navy" style="width: 100%; display: none;" onclick="closeDrawer(); showView('view-i1');">More Info</button>
+            <button class="pill-btn navy-bg" style="width: 100%;" onclick="closeDrawer(); showView('view-n1');">Return</button>
+            <button class="pill-btn pink-bg" style="width: 100%;" onclick="alert('Proceeding...')">Continue</button>
+        </div>
     </div>
 
+    <audio id="global-audio"></audio>
+
     <script>
+        const feedbackText = "You may use your university Copilot account to ask clarifying questions about your brief or criteria, <span class='highlight-pink'>provided your module allows AI support for this step.</span>";
+
         function showView(viewId) {
             document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
-            const target = document.getElementById(viewId);
-            target.style.display = 'block';
+            document.getElementById(viewId).style.display = 'block';
             document.getElementById('header-nav').style.display = (viewId === 'view-q1a') ? 'flex' : 'none';
 
             if(viewId === 'view-q1a') {
@@ -80,15 +130,27 @@
             const video = document.getElementById('feedback-video');
             const header = document.getElementById('feedback-header');
             const body = document.getElementById('feedback-body');
+            const btnMore = document.getElementById('btn-more-info');
+            const btnListen = document.getElementById('btn-listen');
+
+            body.innerHTML = feedbackText;
+            btnMore.style.display = (type === 'incorrect') ? 'flex' : 'none';
             
-            header.innerText = (type === 'correct') ? "Correct!" : "Not quite.";
-            body.innerHTML = "Always check your module's specific AI permissions before uploading university documents.";
-            video.src = (type === 'correct') ? "Video2_Success.mp4" : "Video3_Correction.mp4";
+            if(type === 'correct') {
+                header.innerText = "Correct (with caution)!";
+                video.src = "Video2_Success.mp4";
+                btnListen.onclick = () => playAudio('Audio2_Success.wav');
+            } else {
+                header.innerText = "Not quite.";
+                video.src = "Video3_Correction.mp4";
+                btnListen.onclick = () => playAudio('Audio3_Correction.wav');
+            }
             video.play();
             drawer.classList.add('open');
         }
 
         function closeDrawer() { document.getElementById('feedback-drawer').classList.remove('open'); }
+        function playAudio(file) { const a = document.getElementById('global-audio'); a.src = file; a.play(); }
     </script>
 </body>
 </html>
