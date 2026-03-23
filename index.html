@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethical Use of Copilot SPA</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,11 +20,11 @@
 
     <div id="view-h1" class="view active">
         <main class="split-screen">
-            <div class="pane-left"><img src="copilot-logo.png" style="max-width: 70%;" alt="Copilot"></div>
+            <div class="pane-left"><img src="copilot-logo.png" style="max-width: 60%;" alt="Copilot"></div>
             <div class="pane-right">
                 <h1 class="hero-title"><span class="highlight-pink">ETHICAL</span> USE OF COPILOT</h1>
-                <p class="hero-subtitle">In assignment writing, when is it <span class="highlight-pink">ethical</span> to use Copilot?</p>
-                <button class="pill-btn pink-bg" onclick="showView('view-n1')">Start Activity</button>
+                <p class="hero-subtitle">When is it <span class="highlight-pink">ethical</span> to use Copilot?</p>
+                <button class="pill-btn pink-bg" onclick="showView('view-q1a')">Start Activity</button>
             </div>
         </main>
     </div>
@@ -41,9 +41,7 @@
                     </video>
                 </div>
                 <div class="question-content">
-                    <p class="question-text">
-                        <strong>When using your university Copilot account,</strong> can you upload your assignment brief to ask for an explanation?
-                    </p>
+                    <p class="question-text"><strong>When using your university account,</strong> can you upload your brief for an explanation?</p>
                     <div class="q-button-row-centered">
                         <button id="btn-yes" class="pill-btn navy-bg" disabled onclick="triggerFeedback('correct')">YES</button>
                         <button id="btn-no" class="pill-btn pink-bg" disabled onclick="triggerFeedback('incorrect')">NO</button>
@@ -54,49 +52,38 @@
     </div>
 
     <div id="feedback-drawer" class="drawer">
-        <div class="drawer-video-balanced">
-            <video id="feedback-video" width="100%" playsinline></video>
-        </div>
-        <h2 id="feedback-header" style="color: var(--soton-navy);"></h2>
-        <div class="feedback-textbox-shadow" style="padding: 20px; background: #f9f9f9; border-radius: 10px; margin-bottom: 20px;">
-            <p id="feedback-body"></p>
-        </div>
-        <button class="pill-btn navy-bg" onclick="closeDrawer(); showView('view-n1');">Return to Menu</button>
+        <video id="feedback-video" width="100%" playsinline style="border-radius: 15px;"></video>
+        <h2 id="feedback-header" style="color: var(--soton-navy); margin-top: 20px;"></h2>
+        <p id="feedback-body" style="background: #f4f4f4; padding: 20px; border-radius: 10px;"></p>
+        <button class="pill-btn navy-bg" onclick="closeDrawer(); location.reload();">Return to Start</button>
     </div>
 
     <script>
         function showView(viewId) {
             document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
-            document.getElementById(viewId).style.display = 'block';
+            const target = document.getElementById(viewId);
+            target.style.display = 'block';
             document.getElementById('header-nav').style.display = (viewId === 'view-q1a') ? 'flex' : 'none';
 
             if(viewId === 'view-q1a') {
                 const vid = document.getElementById('q1a-video');
                 const yesBtn = document.getElementById('btn-yes');
                 const noBtn = document.getElementById('btn-no');
-
-                // RESET: Disable buttons and play video
-                yesBtn.disabled = true;
-                noBtn.disabled = true;
-                vid.currentTime = 0;
-                vid.play();
-
-                // PEDAGOGICAL LOCK: Wait 3 seconds before enabling buttons
-                setTimeout(() => {
-                    yesBtn.disabled = false;
-                    noBtn.disabled = false;
-                }, 3000); 
+                yesBtn.disabled = true; noBtn.disabled = true;
+                vid.currentTime = 0; vid.play();
+                setTimeout(() => { yesBtn.disabled = false; noBtn.disabled = false; }, 3000); 
             }
         }
 
         function triggerFeedback(type) {
             const drawer = document.getElementById('feedback-drawer');
             const video = document.getElementById('feedback-video');
+            const header = document.getElementById('feedback-header');
             const body = document.getElementById('feedback-body');
             
-            body.innerHTML = "You may use your university account to ask clarifying questions about your brief, provided AI support is allowed.";
+            header.innerText = (type === 'correct') ? "Correct!" : "Not quite.";
+            body.innerHTML = "Always check your module's specific AI permissions before uploading university documents.";
             video.src = (type === 'correct') ? "Video2_Success.mp4" : "Video3_Correction.mp4";
-            
             video.play();
             drawer.classList.add('open');
         }
