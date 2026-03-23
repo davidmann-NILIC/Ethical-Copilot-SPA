@@ -8,72 +8,64 @@
 * { box-sizing: border-box; }
 body, html { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--white); min-height: 100vh; }
 
-/* FIX: Allow scrolling on mobile, lock it only if necessary on desktop */
+/* Allow scrolling on mobile, lock it on desktop if preferred */
 body { overflow-x: hidden; overflow-y: auto; }
 
 .view { display: none; min-height: 100vh; width: 100vw; }
 .view.active { display: block; }
 
-/* HEADER - RESPONSIVE */
+/* HEADER - LOGO CLUSTER */
 .master-header { position: absolute; top: 20px; left: 20px; right: 20px; z-index: 1000; }
 .header-left { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-.cluster-logo { height: 40px; width: auto; } /* Slightly smaller for mobile */
+.cluster-logo { height: 40px; width: auto; }
 
-/* Hide nav text on small phones to prevent car-crash */
 @media (max-width: 600px) {
     .header-nav-text { display: none; }
 }
 
-/* SPLIT SCREEN - Responsive Stacking */
+/* SPLIT SCREEN - STACKING LOGIC */
 .split-screen { display: flex; flex-direction: column; min-height: 100vh; width: 100vw; }
 
-/* Desktop Logic: 45/55 Split */
 @media (min-width: 1024px) {
     .split-screen { flex-direction: row; }
     .pane-left { width: 45%; height: 100vh; position: sticky; top: 0; }
     .pane-right { width: 55%; padding: 5% 10% 5% 5%; }
 }
 
-.pane-left { display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10% 5%; background: #fdfdfd; }
-.pane-right { padding: 80px 10% 40px 10%; display: flex; flex-direction: column; justify-content: center; }
+.pane-left { display: flex; align-items: center; justify-content: center; position: relative; padding: 10% 5%; background: #fdfdfd; min-height: 300px; }
+.pane-right { padding: 100px 10% 40px 10%; display: flex; flex-direction: column; justify-content: center; flex-grow: 1; }
 
-/* WATERMARK - Accessibility Fix */
+/* WATERMARK */
 .watermark-text-large { 
     font-size: clamp(15rem, 50vw, 75rem); 
     font-weight: 900; 
     color: var(--soton-navy); 
-    opacity: 0.03; /* Lowered for legibility */
+    opacity: 0.03; 
     position: absolute; 
     pointer-events: none; 
-    line-height: 0.8;
     z-index: 0;
 }
 
-/* TYPOGRAPHY */
-.hero-title { font-size: clamp(1.8rem, 4.5vw, 3.8rem); color: var(--soton-navy); margin: 0; font-weight: 800; line-height: 1.1; }
-.hero-subtitle { font-size: clamp(1rem, 1.8vw, 1.4rem); color: var(--soton-navy); margin: 10px 0 25px 0; }
-.highlight-pink { color: var(--ntu-pink); }
-
-/* INTERACTION ELEMENTS */
+/* INTERACTION CENTER */
 .video-container-balanced { width: 100%; max-width: 700px; margin: 0 auto 25px auto; position: relative; z-index: 2; }
 .video-container-balanced video { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
 .question-text { font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--soton-navy); margin-bottom: 30px; line-height: 1.5; }
 
-/* BUTTONS */
-.q-button-row-centered { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 40px; } /* Gutter space for Thumb Zone */
+/* BUTTONS - THUMB ZONE */
+.q-button-row-centered { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 40px; }
 
 .pill-btn {
     height: 48px !important; width: 260px; border-radius: 24px; 
     font-weight: 700; font-size: 1rem; cursor: pointer; 
     display: flex; align-items: center; justify-content: center; 
-    transition: all 0.3s ease; text-decoration: none; border: none;
+    transition: all 0.3s ease; border: none;
 }
 .pill-btn:disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(1); }
 .navy-bg { background: var(--soton-navy); color: #fff; }
 .pink-bg { background: var(--ntu-pink); color: #fff; }
 
-/* DRAWER - Mobile Responsive */
+/* DRAWER */
 .drawer { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: #fff; transition: right 0.5s ease; z-index: 2000; padding: 40px 20px; overflow-y: auto; }
-@media (min-width: 768px) { .drawer { width: 700px; right: -750px; padding: 50px; } }
+@media (min-width: 768px) { .drawer { width: 700px; right: -750px; } }
 .drawer.open { right: 0; }
